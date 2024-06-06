@@ -1,0 +1,58 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 79
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 79
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: return len(nums) > len(set(nums))
+    text: |
+      from typing import List
+      
+      
+      def contains_duplicate(nums: List[int]) -> bool:
+          ...
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import contains_duplicate
+      
+      
+      class TestContainsDuplicate(unittest.TestCase):
+      
+          def test_contains_duplicate(self):
+              nums = [1, 2, 3, 1]
+              result = contains_duplicate(nums)
+              self.assertTrue(result)
+      
+              nums = [1, 2, 3, 4]
+              result = contains_duplicate(nums)
+              self.assertFalse(result)
+      
+              nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
+              result = contains_duplicate(nums)
+              self.assertTrue(result)
+      
+          def test_empty_input(self):
+              nums = []
+              result = contains_duplicate(nums)
+              self.assertFalse(result)
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

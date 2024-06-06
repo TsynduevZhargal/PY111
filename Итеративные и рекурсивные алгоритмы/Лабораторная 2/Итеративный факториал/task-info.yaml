@@ -1,0 +1,61 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 203
+        length: 66
+        placeholder_text: "...  # TODO реализовать итеративный алгоритм нахождения фак\
+      ториала"
+        initial_state:
+          length: 66
+          offset: 203
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+    text: |
+      def factorial_iterative(n: int) -> int:
+          """
+          Рассчитать факториал числа n итеративным способом
+      
+          :param n: Число, факториал которого нужно найти
+          :return: n! - факториал числа n
+          """
+          ...  # TODO реализовать итеративный алгоритм нахождения факториала
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      import math
+      
+      from task import factorial_iterative as factorial
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_fact_iterative(self):
+              self.assertEqual(math.factorial(12), factorial(12), msg="Ошибка в расчетах")
+      
+          def test_fact_iter_exc(self):
+              with self.assertRaises(ValueError, msg="Факториал считается от не отрицательных целых чисел"):
+                  factorial(-1121)
+      
+          def test_fact_rec_exc_float(self):
+              with self.assertRaises(TypeError, msg="Факториал считается от не отрицательных целых чисел"):
+                  factorial(1.74)
+      
+          def test_fact_recursive_with_zero(self):
+              self.assertEqual(math.factorial(0), factorial(0), msg="Факториал 0 по определению равен 1")
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: img.png
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

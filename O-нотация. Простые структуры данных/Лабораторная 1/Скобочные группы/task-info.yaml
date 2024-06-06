@@ -1,0 +1,60 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 280
+        length: 49
+        placeholder_text: "...  # TODO реализовать проверку скобочной группы"
+        initial_state:
+          length: 49
+          offset: 280
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+    text: |
+      def check_brackets(brackets_row: str) -> bool:
+          """
+          Проверьте, является ли входная строка допустимой последовательностью скобок
+      
+          :param brackets_row: Входная строка для проверки
+          :return: True, если последовательность корректна, False в противном случае
+          """
+          ...  # TODO реализовать проверку скобочной группы
+      
+      
+      if __name__ == '__main__':
+          print(check_brackets("()()"))  # True
+          print(check_brackets(")("))  # False
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import check_brackets
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_invalid(self):
+              incorrect_brackets_list = ["(()(", "(()))", "(()))", ")(", ")()("]
+              for brackets in incorrect_brackets_list:
+                  with self.subTest(brackets=brackets):
+                      self.assertFalse(check_brackets(brackets))
+      
+          def test_valid(self):
+              incorrect_brackets_list = ["", "()()", "(()())", "((()(())()))()"]
+              for brackets in incorrect_brackets_list:
+                  with self.subTest(brackets=brackets):
+                      self.assertTrue(check_brackets(brackets))
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1
+solution_hidden: false

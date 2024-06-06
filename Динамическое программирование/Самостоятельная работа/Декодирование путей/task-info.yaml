@@ -1,0 +1,58 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 38
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 38
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if not s:
+                  return 0
+          
+              n = len(s)
+              dp = [0] * (n + 1)
+              dp[0] = 1
+              dp[1] = 1 if s[0] != '0' else 0
+          
+              for i in range(2, n + 1):
+                  if s[i - 1] != '0':
+                      dp[i] += dp[i - 1]
+                  if s[i - 2] == '1' or (s[i - 2] == '2' and s[i - 1] <= '6'):
+                      dp[i] += dp[i - 2]
+          
+              return dp[n]
+    text: |
+      def num_decodings(s: str) -> int:
+          ...
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import num_decodings
+      
+      
+      class TestSolution(unittest.TestCase):
+          def test_num_decodings(self):
+              self.assertEqual(num_decodings("12"), 2)
+              self.assertEqual(num_decodings("226"), 3)
+              self.assertEqual(num_decodings("0"), 0)
+              self.assertEqual(num_decodings("10"), 1)
+              self.assertEqual(num_decodings("101"), 1)
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

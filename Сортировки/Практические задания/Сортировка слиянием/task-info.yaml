@@ -1,0 +1,119 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 458
+        length: 42
+        placeholder_text: "...  # TODO реализуйте сортировку слиянием"
+        initial_state:
+          length: 42
+          offset: 458
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if not container:
+                  return container
+          
+              def _merge(left_container: List[int], right_container: List[int]) -> List[int]:
+                  """
+                  1. Берем два отсортированных массива
+                  2. Сравниваем первые элементы из каждого массива и в итоговый массив записываем наименьшее
+                  3. В массиве, в котором был наименьший элемент, переходим к следующему
+                  4. Когда один из массивов закончится, остаток второго «сливаем» в итоговый массив
+          
+                  :param left_container: Левый отсортированный массива
+                  :param right_container: Правый отсортированный массива
+          
+                  :return: Результат слияния двух отсортированных массивов, как новый отсортированный массив
+                  """
+                  merged_container = []
+          
+                  while True:
+                      # 2. сравниваем первые элементы из каждого массива и в итоговый массив записываем наименьшее
+                      if left_container[0] <= right_container[0]:
+                          elem = left_container.pop(0)  # 3. в массиве, в котором был наименьший элемент, переходим к следующему
+                          merged_container.append(elem)
+                      else:
+                          elem = right_container.pop(0)  # 3. в массиве, в котором был наименьший элемент, переходим к следующему
+                          merged_container.append(elem)
+          
+                      # 4. когда один из массивов закончится, остаток второго «сливаем» в итоговый массив
+                      if not left_container:
+                          merged_container += right_container
+                          break
+                      if not right_container:
+                          merged_container += left_container
+                          break
+          
+                  return merged_container
+          
+              if len(container) == 1:  # 1. Если массив состоит из 1 элемента – он отсортирован
+                  return container
+          
+              middle = len(container) // 2  # 2. Иначе массив разбивается на две части, которые сортируются рекурсивно
+              new_left = sort(container[:middle])
+              new_right = sort(container[middle:])
+          
+              # 3. После сортировки двух частей массива к ним применяется процедура слияния
+              return _merge(new_left, new_right)
+    text: |
+      from typing import List
+      
+      
+      def sort(container: List[int]) -> List[int]:
+          """
+          Алгоритм сортировки слиянием.
+      
+          1. Если массив состоит из 1 элемента – он отсортирован
+          2. Иначе массив разбивается на две части, которые сортируются рекурсивно
+          3. После сортировки двух частей массива к ним применяется процедура слияния
+      
+          :param container: Массив, который надо отсортировать
+          :return: Отсортированный в порядке возрастания массив
+          """
+          ...  # TODO реализуйте сортировку слиянием
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      import random
+      
+      from task import sort
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_sorted(self):
+              arr = [random.randint(-100, 100) for _ in range(30)]
+              self.assertEqual(
+                  sorted(arr), sort(arr),
+                  msg="Последовательность не отсортировалась"
+              )
+      
+          def test_sort_empty_seq(self):
+              empty_arr = []
+              self.assertEqual(
+                  empty_arr, sort(empty_arr),
+                  msg="Пустая последовательность должна сортироваться :)"
+              )
+      
+          def test_sort_one_item(self):
+              one_item_seq = [1]
+              self.assertEqual(
+                  one_item_seq, sort(one_item_seq),
+                  msg="Почему-то не отсортировалась последовательность из одного элемента :("
+              )
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: merge_sort.gif
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

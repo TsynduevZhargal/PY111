@@ -1,0 +1,204 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 204
+        length: 35
+        placeholder_text: "...  # TODO инициализировать список"
+        initial_state:
+          length: 35
+          offset: 204
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+      - offset: 418
+        length: 37
+        placeholder_text: "...  # TODO реализовать метод enqueue"
+        initial_state:
+          length: 37
+          offset: 418
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+      - offset: 679
+        length: 37
+        placeholder_text: "...  # TODO реализовать метод dequeue"
+        initial_state:
+          length: 37
+          offset: 679
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+      - offset: 1198
+        length: 34
+        placeholder_text: "...  # TODO реализовать метод peek"
+        initial_state:
+          length: 34
+          offset: 1198
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+      - offset: 1304
+        length: 35
+        placeholder_text: "...  # TODO реализовать метод clear"
+        initial_state:
+          length: 35
+          offset: 1304
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+      - offset: 1420
+        length: 37
+        placeholder_text: "...  # TODO реализовать метод __len__"
+        initial_state:
+          length: 37
+          offset: 1420
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+    text: |
+      """
+      My little Queue
+      """
+      from typing import Any
+      
+      
+      class Queue:
+          def __init__(self):
+              """
+              Очередь с помощью python list
+              TODO Описать где начало и конец очереди
+              """
+              ...  # TODO инициализировать список
+      
+          def enqueue(self, elem: Any) -> None:
+              """
+              Добавление элемент в конец очереди
+      
+              :param elem: Элемент, который должен быть добавлен
+              """
+              ...  # TODO реализовать метод enqueue
+      
+          def dequeue(self) -> Any:
+              """
+              Извлечение элемента из начала очереди.
+      
+              :raise: IndexError - Ошибка, если очередь пуста
+      
+              :return: Извлеченный с начала очереди элемент.
+              """
+              ...  # TODO реализовать метод dequeue
+      
+          def peek(self, ind: int = 0) -> Any:
+              """
+              Просмотр произвольного элемента, находящегося в очереди, без его извлечения.
+      
+              :param ind: индекс элемента (отсчет с начала, 0 - первый с начала элемент в очереди, 1 - второй с начала элемент в очереди, и т.д.)
+      
+              :raise: TypeError - если указан не целочисленный тип индекса
+              :raise: IndexError - если индекс вне границ очереди
+      
+              :return: Значение просмотренного элемента
+              """
+              ...  # TODO реализовать метод peek
+      
+          def clear(self) -> None:
+              """ Очистка очереди. """
+              ...  # TODO реализовать метод clear
+      
+          def __len__(self):
+              """ Количество элементов в очереди. """
+              ...  # TODO реализовать метод __len__
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import Queue
+      
+      
+      class TestCase(unittest.TestCase):
+          @classmethod
+          def setUpClass(cls) -> None:
+              cls.my_queue = Queue()
+      
+          def setUp(self):
+              self.my_queue.clear()
+      
+          def test__len__(self):
+              self.assertTrue(hasattr(self.my_queue, "__len__"), msg="Очередь должна иметь магический метод __len__ для определения размера очереди.")
+      
+          def test_clear(self):
+              self.my_queue.enqueue(3)
+              self.my_queue.clear()
+      
+              self.assertEqual(0, len(self.my_queue), msg="Точно ли очередь была очищена???")
+      
+          def test_dequeue_empty_queue(self):
+              with self.assertRaises(IndexError, msg="Если в очереди нет элементов, то dequeue должен вернуть ошибку"):
+                  self.my_queue.dequeue()
+      
+          def test_enqueue_dequeue(self):
+              initial_elem = 3
+              self.my_queue.enqueue(initial_elem)
+      
+              self.assertEqual(
+                  initial_elem, self.my_queue.dequeue(),
+                  msg="Некорректно работают операции dequeue или enqueue"
+              )
+      
+          def test_multiple_en_de_queues(self):
+              expected_values = list(range(5))
+              for value in expected_values:
+                  self.my_queue.enqueue(value)
+      
+              for ind, expected_value in enumerate(expected_values):
+                  with self.subTest(ind=ind, expected_value=expected_value):
+                      self.assertEqual(
+                          expected_value, self.my_queue.dequeue(),
+                          msg=f"Ожидается значение {expected_value}. Очередь работает по принципу FIFO - первый пришел первый вышел"
+                      )
+      
+              self.assertEqual(0, len(self.my_queue), msg="Очередь должна быть пустой")
+      
+          def test_peek(self):
+              expected_values = [5, 3, 7]
+              for value in expected_values:
+                  self.my_queue.enqueue(value)
+      
+              for ind, expected_value in enumerate(expected_values):
+                  with self.subTest(ind=ind, expected_value=expected_value):
+                      self.assertEqual(
+                          expected_value, self.my_queue.peek(ind),
+                          msg=f"Ожидается значение {expected_value}"
+                      )
+      
+              self.assertEqual(len(expected_values), len(self.my_queue), msg="Очередь не должна быть пустой")
+      
+          def test_peek_default_ind(self):
+              expected_values = [5, 3, 7]
+              for value in expected_values:
+                  self.my_queue.enqueue(value)
+      
+              self.assertEqual(
+                  self.my_queue.peek(), expected_values[0],
+                  msg="По умолчанию peep должен возвращать элемент с начала очереди"
+              )
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1
+solution_hidden: false

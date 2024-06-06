@@ -1,0 +1,67 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 76
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 76
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          count = 0
+              candidate = None
+          
+              for num in nums:
+                  if count == 0:
+                      candidate = num
+                  count += (1 if num == candidate else -1)
+          
+              return candidate
+    text: |
+      from typing import List
+      
+      
+      def majority_element(nums: List[int]) -> int:
+          ...
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import majority_element
+      
+      
+      class TestMajorityElement(unittest.TestCase):
+      
+          def test_majority_element(self):
+              nums = [3, 2, 3]
+              result = majority_element(nums)
+              self.assertEqual(result, 3)
+      
+              nums = [2, 2, 1, 1, 1, 2, 2]
+              result = majority_element(nums)
+              self.assertEqual(result, 2)
+      
+              nums = [1, 1, 2, 2, 2, 2, 3, 3, 3, 2, 2]
+              result = majority_element(nums)
+              self.assertEqual(result, 2)
+      
+          def test_empty_input(self):
+              nums = []
+              result = majority_element(nums)
+              self.assertIsNone(result)
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

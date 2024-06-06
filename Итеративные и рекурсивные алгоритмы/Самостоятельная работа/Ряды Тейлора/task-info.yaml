@@ -1,0 +1,73 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 285
+        length: 73
+        placeholder_text: "...  # TODO вычислить sin(x) с помощью разложения сумму бес\
+      конечного ряда"
+        initial_state:
+          length: 73
+          offset: 285
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          def item(n):
+                  """ Подсчет очередного элемента бесконечного ряда Тейлора для sin(x)"""
+                  return (pow(-1, n)) * (pow(x, 2*n+1)/factorial(2*n+1))
+          
+              sum_ = 0
+              for i in count():
+                  current_value = item(i)
+                  sum_ += current_value
+          
+                  if abs(current_value) <= DELTA:
+                      return sum_
+    text: |
+      from typing import Union
+      from itertools import count
+      from math import factorial
+      
+      
+      DELTA = 0.000001
+      
+      
+      def sinx(x: Union[int, float]) -> float:
+          """
+          Вычисление sin(x) с помощью разложения в ряд Тейлора
+      
+          :param x: x значение в радианах
+          :return: значение sin(x)
+          """
+          ...  # TODO вычислить sin(x) с помощью разложения сумму бесконечного ряда
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      import math
+      
+      from task import sinx, DELTA
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_sinx(self):
+              const = 1.55433
+              self.assertAlmostEqual(
+                  math.sin(const), sinx(const), delta=DELTA,
+                  msg="Нужно больше точности :D"
+              )
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: img.png
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

@@ -1,0 +1,227 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 258
+        length: 68
+        placeholder_text: "...  # TODO использовать deque для реализации очереди с при\
+      оритетами"
+        initial_state:
+          length: 68
+          offset: 258
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          self.priority_queue: dict[int, deque] = {
+                      priority: deque() for priority in range(self.HIGH_PRIORITY, self.LOW_PRIORITY + 1)
+                  }
+      - offset: 601
+        length: 37
+        placeholder_text: "...  # TODO реализовать метод enqueue"
+        initial_state:
+          length: 37
+          offset: 601
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: "self.priority_queue[priority].append(elem)"
+      - offset: 862
+        length: 37
+        placeholder_text: "...  # TODO реализовать метод dequeue"
+        initial_state:
+          length: 37
+          offset: 862
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          for queue in self.priority_queue.values():
+                      if queue:
+                          return queue.popleft()
+          
+                  raise IndexError("Извлечение из пустой очереди не возможно")
+      - offset: 1467
+        length: 34
+        placeholder_text: "...  # TODO реализовать метод peek"
+        initial_state:
+          length: 34
+          offset: 1467
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if not isinstance(ind, int):
+                      raise TypeError(f"Индекс должен быть целочисленного типа, а не {type(ind).__name__}")
+          
+                  queue = self.priority_queue[priority]
+                  if not 0 <= ind < len(queue):
+                      raise IndexError("Индекс все границ очереди")
+          
+                  return queue[ind]
+      - offset: 1573
+        length: 35
+        placeholder_text: "...  # TODO реализовать метод clear"
+        initial_state:
+          length: 35
+          offset: 1573
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          for queue in self.priority_queue.values():
+                      queue.clear()
+      - offset: 1689
+        length: 37
+        placeholder_text: "...  # TODO реализовать метод __len__"
+        initial_state:
+          length: 37
+          offset: 1689
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          len_ = 0
+                  for queue in self.priority_queue.values():
+                      len_ += len(queue)
+          
+                  return len_
+    text: |
+      """
+      Priority Queue
+      Queue priorities are from 0 to 10
+      """
+      from typing import Any
+      
+      from collections import deque
+      
+      
+      class PriorityQueue:
+          HIGH_PRIORITY = 0  # наивысший приоритет
+          LOW_PRIORITY = 10  # наименьший приоритет
+      
+          def __init__(self):
+              ...  # TODO использовать deque для реализации очереди с приоритетами
+      
+          def enqueue(self, elem: Any, priority: int = 0) -> None:
+              """
+              Добавление элемент в конец очереди c учетом приоритета
+      
+              :param elem: Элемент, который должен быть добавлен
+              :param priority: Приоритет добавляемого элемента
+              """
+              ...  # TODO реализовать метод enqueue
+      
+          def dequeue(self) -> Any:
+              """
+              Извлечение элемента из начала очереди.
+      
+              :raise: IndexError - Ошибка, если очередь пуста
+      
+              :return: Извлеченный с начала очереди элемент.
+              """
+              ...  # TODO реализовать метод dequeue
+      
+          def peek(self, ind: int = 0, priority: int = 0) -> Any:
+              """
+              Просмотр произвольного элемента, находящегося в очереди, без его извлечения.
+      
+              :param ind: индекс элемента (отсчет с начала, 0 - первый с начала элемент в очереди, 1 - второй с начала элемент в очереди с указанным приоритетом, и т.д.)
+              :param priority: Приоритет очереди
+      
+              :raise: TypeError - если указан не целочисленный тип индекса
+              :raise: IndexError - если индекс вне границ очереди
+      
+              :return: Значение просмотренного элемента
+              """
+              ...  # TODO реализовать метод peek
+      
+          def clear(self) -> None:
+              """ Очистка очереди. """
+              ...  # TODO реализовать метод clear
+      
+          def __len__(self):
+              """ Количество элементов в очереди. """
+              ...  # TODO реализовать метод __len__
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |-
+      import unittest
+      
+      from task import PriorityQueue
+      
+      
+      class TestCase(unittest.TestCase):
+          @classmethod
+          def setUpClass(cls) -> None:
+              cls.my_priority_queue = PriorityQueue()
+      
+          def setUp(self):
+              self.my_priority_queue.clear()
+      
+          def test__len__(self):
+              self.assertTrue(hasattr(self.my_priority_queue, "__len__"), msg="Очередь должна иметь магический метод __len__ для определения размера очереди.")
+      
+          def test_clear(self):
+              self.my_priority_queue.enqueue(3)
+              self.my_priority_queue.clear()
+      
+              self.assertEqual(0, len(self.my_priority_queue), msg="Точно ли очередь была очищена???")
+      
+          def test_dequeue_empty_queue(self):
+              with self.assertRaises(IndexError, msg="Если в очереди нет элементов, то dequeue должен вернуть ошибку"):
+                  self.my_priority_queue.dequeue()
+      
+          def test_enqueue_dequeue_without_priority(self):
+              initial_elem = 3
+              self.my_priority_queue.enqueue(initial_elem)
+      
+              self.assertEqual(initial_elem, self.my_priority_queue.dequeue())
+      
+          def test_multiple_en_de_queues_without_priority(self):
+              items = [i for i in range(10)]
+      
+              for i in items:
+                  self.my_priority_queue.enqueue(i)
+      
+              received_items = []
+              for _ in items:
+                  received_items.append(self.my_priority_queue.dequeue())
+      
+              self.assertEqual(items, received_items)
+      
+          def test_peek(self):
+              self.my_priority_queue.enqueue(3)
+              self.my_priority_queue.enqueue(5)
+              self.my_priority_queue.enqueue(7)
+      
+              self.assertEqual(3, self.my_priority_queue.peek())
+              self.assertEqual(5, self.my_priority_queue.peek(1))
+              self.assertEqual(3, self.my_priority_queue.peek())
+      
+          def test_en_de_queue_with_priority(self):
+              high_priority = 0
+              medium_priority = 5
+              low_priority = 10
+              self.my_priority_queue.enqueue(10, high_priority)
+              self.my_priority_queue.enqueue(0, low_priority)
+      
+              self.assertEqual(10, self.my_priority_queue.dequeue())
+      
+              self.my_priority_queue.enqueue(1, low_priority)
+              self.my_priority_queue.enqueue(5, medium_priority)
+      
+              self.assertEqual(5, self.my_priority_queue.dequeue())
+              self.assertEqual(0, self.my_priority_queue.dequeue())
+              self.assertEqual(1, self.my_priority_queue.dequeue())
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

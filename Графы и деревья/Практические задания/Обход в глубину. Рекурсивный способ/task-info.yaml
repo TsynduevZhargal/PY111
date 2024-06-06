@@ -1,0 +1,96 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 531
+        length: 39
+        placeholder_text: "...  # TODO реализовать обход в глубину"
+        initial_state:
+          length: 39
+          offset: 531
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          visited = {node: False for node in g.nodes}
+              path = []
+          
+              def recursion_dfs(current_node):
+                  visited[current_node] = True
+                  path.append(current_node)
+                  for neighbor in g[current_node]:
+                      if not visited[neighbor]:
+                          recursion_dfs(neighbor)
+          
+              recursion_dfs(start_node)
+          
+              return path
+    text: |
+      from typing import Hashable, List
+      import networkx as nx
+      
+      
+      def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
+          """
+          Функция выполняет обход в глубину и возвращает список узлов в порядке посещения.
+          В данной задаче порядок обхода графа левосторонний или правосторонний не важен,
+          главное соблюсти порядок обхода в ширину.
+      
+          :param g: Граф NetworkX, по которому нужно совершить обход
+          :param start_node: Стартовый узел, откуда нужно начать обход
+          :return: Список узлов в порядке посещения.
+          """
+          ...  # TODO реализовать обход в глубину
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      import networkx as nx
+      
+      from task import dfs
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_dfs(self):
+              graph = nx.Graph()
+              graph.add_nodes_from("ABCDEFG")
+              graph.add_edges_from([
+                  ('A', 'B'),
+                  ('A', 'C'),
+                  ('B', 'D'),
+                  ('B', 'E'),
+                  ('C', 'F'),
+                  ('E', 'G'),
+              ])
+              result = dfs(graph, 'A')
+              self.assertEqual(
+                  7,
+                  len(result),
+                  msg="Проверьте возвращаемый список - в него либо затесались лишние элементы, либо не хватает элементов."
+              )
+      
+              self.assertIn(
+                  result,
+                  [
+                      list('ABDEGCF'),
+                      list('ABEGDCF'),
+                      list('ACFBDEG'),
+                      list('ACFBEGD')
+                  ],
+                  msg="Возвращаемый список несоответствует нужному порядку обхода."
+              )
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: img.png
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

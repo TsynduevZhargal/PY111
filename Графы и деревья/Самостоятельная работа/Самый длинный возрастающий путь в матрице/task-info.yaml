@@ -1,0 +1,71 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 292
+        length: 34
+        placeholder_text: '# TODO реализовать поиск в глубину'
+        initial_state:
+          length: 34
+          offset: 292
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if not dp[i][j]:
+                      for dx, dy in directions:
+                          x, y = i + dx, j + dy
+                          if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
+                              dp[i][j] = max(dp[i][j], dfs(x, y))
+                      dp[i][j] += 1
+                  return dp[i][j]
+    text: |
+      from typing import List
+      
+      
+      def longest_increasing_path(matrix: List[List[int]]) -> int:
+          if not matrix:
+              return 0
+      
+          m, n = len(matrix), len(matrix[0])
+          directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+          dp = [[0] * n for _ in range(m)]
+          ans = 0
+      
+          def dfs(i, j):
+              # TODO реализовать поиск в глубину
+      
+          for i in range(m):
+              for j in range(n):
+                  ans = max(ans, dfs(i, j))
+      
+          return ans
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import longest_increasing_path
+      
+      
+      class TestSolution(unittest.TestCase):
+          def test_longest_increasing_path(self):
+              self.assertEqual(longest_increasing_path([[9,9,4],[6,6,8],[2,1,1]]), 4)
+              self.assertEqual(longest_increasing_path([[3,4,5],[3,2,6],[2,2,1]]), 4)
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: img.png
+    visible: true
+    learner_created: false
+  - name: img_1.png
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

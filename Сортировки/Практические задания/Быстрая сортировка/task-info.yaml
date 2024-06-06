@@ -1,0 +1,83 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 495
+        length: 51
+        placeholder_text: "...  # TODO реализовать алгоритм быстрой сортировки"
+        initial_state:
+          length: 51
+          offset: 495
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if not container:
+                  return container
+          
+              pivot = container[0]
+              return (
+                      sort([item for item in container if item < pivot]) +
+                      [item for item in container if item == pivot] +
+                      sort([item for item in container if item > pivot])
+              )
+    text: |
+      from typing import List
+      
+      
+      def sort(container: List[int]) -> List[int]:
+          """
+          Алгоритм быстрой сортировки.
+      
+          1. Выбираем опорный элемент. Например, первый элемент.
+          2. В левую часть отправляем всё что меньше опорного элемента, в правую всё что больше.
+          3. К левой и правой части рекурсивно применяет алгоритм быстрой сортировки.
+      
+          :param container: последовательность, которую надо отсортировать
+          :return: Отсортированная в порядке возрастания последовательность
+          """
+          ...  # TODO реализовать алгоритм быстрой сортировки
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      import random
+      
+      from task import sort
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_sorted(self):
+              arr = [random.randint(-100, 100) for _ in range(30)]
+              self.assertEqual(
+                  sorted(arr), sort(arr),
+                  msg="Последовательность не отсортировалась"
+              )
+      
+          def test_sort_empty_seq(self):
+              empty_arr = []
+              self.assertEqual(
+                  empty_arr, sort(empty_arr),
+                  msg="Пустая последовательность должна сортироваться :)"
+              )
+      
+          def test_sort_one_item(self):
+              one_item_seq = [1]
+              self.assertEqual(
+                  one_item_seq, sort(one_item_seq),
+                  msg="Почему-то не отсортировалась последовательность из одного элемента :("
+              )
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: quick_sort.gif
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

@@ -1,0 +1,67 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 269
+        length: 44
+        placeholder_text: "...  # TODO реализовать рекурсивный алгоритм"
+        initial_state:
+          length: 44
+          offset: 269
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if n < 0:
+                  raise ValueError("Номер числа Фибоначчи должен быть не отрицательным числом")
+          
+              if n == 0:
+                  return 0
+              if n == 1:
+                  return 1
+          
+              return fib_recursive(n - 1) + fib_recursive(n - 2)
+    text: |
+      def fib_recursive(n: int) -> int:
+          """
+          Вычислить n-е число последовательности Фибоначчи, используя рекурсивный алгоритм.
+      
+          :param n: Номер числа последовательности Фибоначии. Нумерация чисел с 0
+          :return: n-е число последовательности Фибоначчи
+          """
+          ...  # TODO реализовать рекурсивный алгоритм
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import fib_recursive as fib
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_fib_numbers(self):
+              fib_numbers = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+              for fib_num_index, fib_num in enumerate(fib_numbers):
+                  with self.subTest(fib_num_index=fib_num_index, fib_num=fib_num):
+                      self.assertEqual(
+                          fib_num, fib(fib_num_index),
+                          msg=f"Не правильно :( {fib_num_index}-е число фибоначчи должно быть {fib_num}. Ты помнишь, что нумерация должна начинаться с 0?"
+                      )
+      
+          def test_fib_from_negative_index(self):
+              with self.assertRaises(ValueError, msg="Что такое -35 число фибоначчи? Должна вызываться ошибка"):
+                  fib(-35)
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: img.png
+    visible: true
+    learner_created: false
+status: Unchecked
+record: -1

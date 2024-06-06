@@ -1,0 +1,66 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 347
+        length: 66
+        placeholder_text: "...  # TODO решить задачу с помощью динамического программи\
+      рования"
+        initial_state:
+          length: 66
+          offset: 347
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: '...'
+    text: |
+      from typing import List
+      
+      
+      def car_paths(n: int, m: int) -> List[List[int]]:
+          """
+          Просчитать количество маршрутов до каждой клетки с учетом возможных перемещений.
+      
+          :param n: Количество строк в таблице
+          :param m: Количество столбцов в таблице
+      
+          :return: Новую таблицу с посчитанным количеством маршрутов в каждую клетку
+          """
+          ...  # TODO решить задачу с помощью динамического программирования
+      
+      
+      if __name__ == '__main__':
+          paths = car_paths(4, 2)
+          print(paths[-1][-1])  # 7
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import car_paths
+      
+      
+      class TestCase(unittest.TestCase):
+          def test_coast(self):
+              expected_result = [
+                  [1, 1, 1, 1, 1],
+                  [1, 3, 5, 7, 9],
+                  [1, 5, 13, 25, 41],
+                  [1, 7, 25, 63, 129],
+                  [1, 9, 41, 129, 321]
+              ]
+              self.assertEqual(
+                  car_paths(5, 5), expected_result,
+                  msg="Таблица путей рассчитана неверно :("
+              )
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

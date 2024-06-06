@@ -1,0 +1,58 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 81
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 81
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          if not strs:
+                  return ""
+              if len(strs) == 1:
+                  return strs[0]
+          
+              strs.sort()
+              prefix = ""
+              for i in range(len(strs[0])):
+                  if strs[0][i] == strs[-1][i]:
+                      prefix += strs[0][i]
+                  else:
+                      break
+              return prefix
+    text: |
+      from typing import List
+      
+      
+      def longest_common_prefix(strs: List[str]) -> str:
+          ...
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import longest_common_prefix
+      
+      
+      class TestSolution(unittest.TestCase):
+          def test_longestCommonPrefix(self):
+              self.assertEqual(longest_common_prefix(["flower", "flow", "flight"]), "fl")
+              self.assertEqual(longest_common_prefix(["dog", "racecar", "car"]), "")
+              self.assertEqual(longest_common_prefix(["dog"]), "dog")
+              self.assertEqual(longest_common_prefix([]), "")
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

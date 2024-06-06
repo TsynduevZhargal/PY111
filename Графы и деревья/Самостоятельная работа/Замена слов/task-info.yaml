@@ -1,0 +1,66 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 94
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 94
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          trie = {}
+              for word in dictionary:
+                  node = trie
+                  for char in word:
+                      if char not in node:
+                          node[char] = {}
+                      node = node[char]
+                  node["#"] = word
+          
+              words = sentence.split()
+              for i, word in enumerate(words):
+                  node = trie
+                  prefix = ""
+                  for char in word:
+                      if char not in node:
+                          break
+                      prefix += char
+                      node = node[char]
+                      if "#" in node:
+                          words[i] = node["#"]
+                          break
+          
+              return " ".join(words)
+    text: |
+      from typing import List
+      
+      
+      def replace_words(dictionary: List[str], sentence: str) -> str:
+          ...
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import replace_words
+      
+      
+      class TestSolution(unittest.TestCase):
+          def test_replaceWords(self):
+              self.assertEqual(replace_words(["cat", "bat", "rat"], "the cattle was rattled by the battery"), "the cat was rat by the bat")
+              self.assertEqual(replace_words(["a", "aa", "aaa", "aaaa"], "a aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa"), "a a a a a a a a bbb baba a")
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1

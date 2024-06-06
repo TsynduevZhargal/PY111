@@ -1,0 +1,91 @@
+type: edu
+files:
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 74
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 74
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          i, j = 0, 0
+              while i < len(a) and j < len(b):
+                  if a[i] == b[j]:
+                      j += 1
+                  i += 1
+              return j == len(b)
+      - offset: 129
+        length: 3
+        placeholder_text: '...'
+        initial_state:
+          length: 3
+          offset: 129
+        initialized_from_dependency: false
+        selected: false
+        status: Unchecked
+        encrypted_possible_answer: |-
+          strs.sort(key=len, reverse=True)
+              for i, s in enumerate(strs):
+                  flag = True
+                  for j in range(len(strs)):
+                      if i == j:
+                          continue
+                      if is_subsequence(strs[j], s):
+                          flag = False
+                          break
+                  if flag:
+                      return len(s)
+              return -1
+    text: |+
+      from typing import List
+      
+      
+      def is_subsequence(a: str, b: str) -> bool:
+          ...
+      
+      
+      def find_lus_length(strs: List[str]) -> int:
+          ...
+    
+    
+    
+    learner_created: false
+  - name: tests/test_task.py
+    visible: false
+    text: |
+      import unittest
+      
+      from task import find_lus_length
+      
+      
+      class TestLongestUncommonSubsequenceII(unittest.TestCase):
+          def test_longest_uncommon_subsequence_ii(self):
+              strs = ["aaa", "bbb", "ccc"]
+              longest_uncommon_length = find_lus_length(strs)
+              self.assertEqual(longest_uncommon_length, 3)
+      
+              strs = ["aabbcc", "aabbcc", "cb", "cac"]
+              longest_uncommon_length = find_lus_length(strs)
+              self.assertEqual(longest_uncommon_length, 3)
+      
+              strs = ["aabbcc", "aabbcc", "cb"]
+              longest_uncommon_length = find_lus_length(strs)
+              self.assertEqual(longest_uncommon_length, 2)
+      
+              strs = ["aabbcc", "aabbcc"]
+              longest_uncommon_length = find_lus_length(strs)
+              self.assertEqual(longest_uncommon_length, -1)
+    learner_created: false
+  - name: __init__.py
+    visible: false
+    learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+status: Unchecked
+record: -1
