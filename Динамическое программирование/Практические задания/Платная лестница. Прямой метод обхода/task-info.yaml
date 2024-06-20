@@ -4,14 +4,14 @@ files:
     visible: true
     placeholders:
       - offset: 449
-        length: 44
+        length: 489
         placeholder_text: "...  # TODO реализовать прямой метод расчета"
         initial_state:
           length: 44
           offset: 449
         initialized_from_dependency: false
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
         encrypted_possible_answer: |-
           count_stairs = len(stairway)
               if count_stairs == 1:
@@ -89,5 +89,8 @@ files:
   - name: tests/__init__.py
     visible: false
     learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 20 Jun 2024 16:36:22 UTC"
 record: -1

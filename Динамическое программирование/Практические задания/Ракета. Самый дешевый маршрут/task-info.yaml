@@ -3,7 +3,7 @@ files:
   - name: task.py
     visible: true
     placeholders:
-      - offset: 355
+      - offset: 369
         length: 53
         placeholder_text: "...  # TODO рассчитать таблицу стоимостей перемещений"
         initial_state:
@@ -11,7 +11,7 @@ files:
           offset: 355
         initialized_from_dependency: false
         selected: false
-        status: Unchecked
+        status: Solved
         encrypted_possible_answer: |-
           table = table.copy()
               n = len(table)
@@ -80,5 +80,8 @@ files:
   - name: img.png
     visible: true
     learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 20 Jun 2024 17:35:02 UTC"
 record: -1

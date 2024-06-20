@@ -85,5 +85,8 @@ files:
   - name: img.png
     visible: true
     learner_created: false
+  - name: 123.py
+    visible: true
+    learner_created: true
 status: Unchecked
 record: -1

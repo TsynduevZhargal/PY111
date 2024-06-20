@@ -3,15 +3,15 @@ files:
   - name: task.py
     visible: true
     placeholders:
-      - offset: 330
-        length: 56
+      - offset: 326
+        length: 461
         placeholder_text: "...  # TODO найти количество маршрутов до каждой ступени"
         initial_state:
           length: 56
           offset: 330
         initialized_from_dependency: false
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
         encrypted_possible_answer: |-
           if count_stairs < 0:
                   raise ValueError("Количество ступеней должно быть не отрицательным числом")
@@ -85,5 +85,8 @@ files:
   - name: stairs_paths.png
     visible: true
     learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 20 Jun 2024 16:38:39 UTC"
 record: -1
