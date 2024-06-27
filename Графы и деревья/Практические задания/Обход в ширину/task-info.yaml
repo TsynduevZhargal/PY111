@@ -52,18 +52,24 @@ files:
                   msg="Возвращаемый список несоответствует нужному порядку обхода."
               )
     learner_created: false
+  - name: tests/__init__.py
+    visible: false
+    learner_created: false
+  - name: img.png
+    visible: true
+    learner_created: false
   - name: task.py
     visible: true
     placeholders:
-      - offset: 561
-        length: 38
+      - offset: 588
+        length: 37
         placeholder_text: "...  # TODO реализовать обход в ширину"
         initial_state:
           length: 38
           offset: 561
         initialized_from_dependency: false
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Failed
         encrypted_possible_answer: |-
           visited = {node: False for node in g.nodes}
               d = deque()  # начало слева, конец справа
@@ -80,7 +86,7 @@ files:
                           visited[neighbor] = True  # если узел "подожжен", то мы его посещали
           
               return path
-      - offset: 633
+      - offset: 1057
         length: 72
         placeholder_text: '# TODO записать граф с помощью модуля networkx и прверить обход
       в ширину'
@@ -89,7 +95,7 @@ files:
           offset: 633
         initialized_from_dependency: false
         selected: false
-        status: Unchecked
+        status: Failed
         encrypted_possible_answer: |-
           graph = nx.Graph()
               graph.add_nodes_from("ABCDEFGHIJ")
@@ -133,11 +139,8 @@ files:
       if __name__ == '__main__':
           # TODO записать граф с помощью модуля networkx и прверить обход в ширину
     learner_created: false
-  - name: tests/__init__.py
-    visible: false
-    learner_created: false
-  - name: img.png
-    visible: true
-    learner_created: false
-status: Unchecked
+status: Failed
+feedback:
+  message: Error
+  time: "Thu, 27 Jun 2024 17:26:20 UTC"
 record: -1

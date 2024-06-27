@@ -1,48 +1,5 @@
 type: edu
 files:
-  - name: task.py
-    visible: true
-    placeholders:
-      - offset: 531
-        length: 39
-        placeholder_text: "...  # TODO реализовать обход в глубину"
-        initial_state:
-          length: 39
-          offset: 531
-        initialized_from_dependency: false
-        selected: false
-        status: Unchecked
-        encrypted_possible_answer: |-
-          visited = {node: False for node in g.nodes}
-              path = []
-          
-              def recursion_dfs(current_node):
-                  visited[current_node] = True
-                  path.append(current_node)
-                  for neighbor in g[current_node]:
-                      if not visited[neighbor]:
-                          recursion_dfs(neighbor)
-          
-              recursion_dfs(start_node)
-          
-              return path
-    text: |
-      from typing import Hashable, List
-      import networkx as nx
-      
-      
-      def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
-          """
-          Функция выполняет обход в глубину и возвращает список узлов в порядке посещения.
-          В данной задаче порядок обхода графа левосторонний или правосторонний не важен,
-          главное соблюсти порядок обхода в ширину.
-      
-          :param g: Граф NetworkX, по которому нужно совершить обход
-          :param start_node: Стартовый узел, откуда нужно начать обход
-          :return: Список узлов в порядке посещения.
-          """
-          ...  # TODO реализовать обход в глубину
-    learner_created: false
   - name: tests/test_task.py
     visible: false
     text: |
@@ -92,5 +49,51 @@ files:
   - name: img.png
     visible: true
     learner_created: false
-status: Unchecked
+  - name: task.py
+    visible: true
+    placeholders:
+      - offset: 569
+        length: 59
+        placeholder_text: "...  # TODO реализовать обход в глубину"
+        initial_state:
+          length: 39
+          offset: 531
+        initialized_from_dependency: false
+        selected: true
+        status: Failed
+        encrypted_possible_answer: |-
+          visited = {node: False for node in g.nodes}
+              path = []
+          
+              def recursion_dfs(current_node):
+                  visited[current_node] = True
+                  path.append(current_node)
+                  for neighbor in g[current_node]:
+                      if not visited[neighbor]:
+                          recursion_dfs(neighbor)
+          
+              recursion_dfs(start_node)
+          
+              return path
+    text: |
+      from typing import Hashable, List
+      import networkx as nx
+      
+      
+      def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
+          """
+          Функция выполняет обход в глубину и возвращает список узлов в порядке посещения.
+          В данной задаче порядок обхода графа левосторонний или правосторонний не важен,
+          главное соблюсти порядок обхода в ширину.
+      
+          :param g: Граф NetworkX, по которому нужно совершить обход
+          :param start_node: Стартовый узел, откуда нужно начать обход
+          :return: Список узлов в порядке посещения.
+          """
+          ...  # TODO реализовать обход в глубину
+    learner_created: false
+status: Failed
+feedback:
+  message: Error
+  time: "Thu, 27 Jun 2024 17:26:14 UTC"
 record: -1

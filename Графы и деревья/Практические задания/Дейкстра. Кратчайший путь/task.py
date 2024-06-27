@@ -1,5 +1,6 @@
 from typing import Hashable, Mapping, Union
 import networkx as nx
+import heapq
 
 
 def dijkstra_algo(g: nx.DiGraph, starting_node: Hashable) -> Mapping[Hashable, Union[int, float]]:
@@ -13,8 +14,47 @@ def dijkstra_algo(g: nx.DiGraph, starting_node: Hashable) -> Mapping[Hashable, U
     """
     ...  # TODO вернуть стоимость путей до всех вершин посчитанных алгоритмом Дейкстры
 
+    distances = {node: float('inf') for node in g.nodes}
+    distances[starting_node] = 0
+    predecessor ={node: None for in g.nodes}
+
+    queue = [(0, starting_node)]
+
+    while queue:
+        current_distance, current_node = heapq.heappop(queue)
+
+        if current_distance > distances[current_node]:
+            continue
+
+        for neighbor, weight in g[current_node].items():
+            distance = current_distance + weight['weight']
+            if distances < distances[neighbor]:
+                distances[neighbor] = distance
+                predecessor[neighbor] = current_node
+                heapq.heappush(queue, (distance, neighbor))
+
+    return distances, predecessor
+
+
+
+    # predecessor, coasts = nx.dijkstra_predecessor_and_ditance(g, strating_node)
+    # for node in g.nodes:
+    #     if node not in coasts:
+    #         coasts[node] = float("inf")
+    #
+    # return coasts, predecessor
 
 if __name__ == '__main__':
-    ...  # TODO записать граф
+    graph = nx.DiGraph()
+    graph.add.weighted_edges_from([
+        ('A', 'B', 1),
+        ('B', 'D', 2),
+        ('B', 'C', 3),
+        ('A', 'B', 1),
+        ('A', 'B', 1),
+        ('A', 'B', 1),
+        ('A', 'B', 1),
+        ('A', 'B', 1),
+    ])# TODO записать граф
 
     print(dijkstra_algo(graph, 1))  # {1: 0, 2: 7, 3: 9, 6: 11, 4: 20, 5: 26}

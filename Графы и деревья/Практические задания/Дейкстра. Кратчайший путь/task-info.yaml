@@ -3,7 +3,7 @@ files:
   - name: task.py
     visible: true
     placeholders:
-      - offset: 693
+      - offset: 706
         length: 82
         placeholder_text: "...  # TODO вернуть стоимость путей до всех вершин посчитан\
       ных алгоритмом Дейкстры"
@@ -20,14 +20,14 @@ files:
                       coasts[node] = float("inf")
           
               return coasts
-      - offset: 809
-        length: 25
+      - offset: 1734
+        length: 267
         placeholder_text: "...  # TODO записать граф"
         initial_state:
           length: 25
           offset: 809
         initialized_from_dependency: false
-        selected: false
+        selected: true
         status: Unchecked
         encrypted_possible_answer: |-
           graph = nx.DiGraph()
